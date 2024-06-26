@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #chat-container {
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #chat-box {
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        #input-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #message-input {
+            width: 80%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #send-button {
+            width: 18%;
+            padding: 5px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <div id="input-box">
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button" onclick="sendMessage()">
+                <i class="icon fas fa-paper-plane"></i> Send
+            </button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script>
+        function sendMessage() {
+            const messageInput = $('#message-input');
+            const chatBox = $('#chat-box');
+
+            const message = messageInput.val();
+
+            if (message.trim() !== '') {
+                const newMessage = $('<p></p>').text(message);
+                chatBox.append(newMessage);
+
+                // Clear the input field after sending the message
+                messageInput.val('');
+
+                // Scroll to the bottom of the chat box to show the latest message
+                chatBox.scrollTop(chatBox[0].scrollHeight);
+            }
+        }
+    </script>
+</body>
+</html>
